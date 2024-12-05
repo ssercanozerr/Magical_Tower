@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts.ScriptableObjects;
+using Assets.Scripts.Signals;
 
 namespace Assets.Scripts.Controllers
 {
@@ -50,7 +51,7 @@ namespace Assets.Scripts.Controllers
 
         private void HitDamage()
         {
-            Debug.Log("hit damage " + enemyInfos.damage);
+            TowerSignals.Instance.onDecreaseHealth?.Invoke(enemyInfos.damage);
         }
     }
 }
