@@ -82,8 +82,6 @@ namespace Assets.Scripts.Controllers
                 obj.SetActive(false);
                 poolDictionary[poolTag].Enqueue(obj);
             }
-
-            Debug.Log($"Pool '{poolTag}' increased by {pool.increaseAmount} objects.");
         }
     }
 }

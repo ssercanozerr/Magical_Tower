@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 3361834574544056098}
   - component: {fileID: 8667052616836904280}
   - component: {fileID: 4824675913405991221}
+  - component: {fileID: -1652322442695669163}
   m_Layer: 0
   m_Name: Beaver
   m_TagString: Beaver
@@ -349,8 +350,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4264119811822447710}
   - {fileID: 1240305535091237129}
@@ -395,7 +396,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -403,6 +404,19 @@ CapsuleCollider:
   m_Height: 1.0255685
   m_Direction: 1
   m_Center: {x: -0.0019228458, y: 0.49167383, z: 0}
+--- !u!114 &-1652322442695669163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732684518155842968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11666279e66089d49bb64dbad1ca726b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyInfos: {fileID: 11400000, guid: 6ad063acb866a844ea8d869e8e21f5cc, type: 2}
 --- !u!1 &2748282422418694191
 GameObject:
   m_ObjectHideFlags: 0

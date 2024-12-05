@@ -7,6 +7,7 @@ TagManager:
   - Beaver
   - Golem
   - Ghost
+  - Tower
   layers:
   - Default
   - TransparentFX

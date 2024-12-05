@@ -1,24 +1,44 @@
 ﻿using Assets.Scripts.Signals;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
 {
     public class GameController : MonoBehaviour
     {
-        void Start()
+        [SerializeField] private Transform tower;
+        [SerializeField] private float spawnRadius;
+        [SerializeField] private int enemyCount;
+
+        private void Start()
         {
-            for (int i = 0; i < 6; i++)
+            SpawnEnemies();
+        }
+
+        private void SpawnEnemies()
+        {
+            for (int i = 0; i < enemyCount; i++)
             {
-                PoolSignals.Instance.onGetObjFromPool?.Invoke("Beaver");
-                PoolSignals.Instance.onGetObjFromPool?.Invoke("Ghost");
-                PoolSignals.Instance.onGetObjFromPool?.Invoke("Golem");
+                float angle = Random.Range(0f, 360f);
+                float radians = angle * Mathf.Deg2Rad;
+
+                Vector3 spawnPosition = tower.position + new Vector3(Mathf.Cos(radians), 0, Mathf.Sin(radians)) * spawnRadius;
+
+                string enemyType = GetRandomEnemyType();
+                GameObject enemy = PoolSignals.Instance.onGetObjFromPool?.Invoke(enemyType);
+
+                if (enemy != null)
+                {
+                    enemy.transform.position = spawnPosition;
+                    enemy.transform.LookAt(tower);
+                }
             }
         }
 
-        void Update()
+        private string GetRandomEnemyType()
         {
-
+            string[] enemyTypes = { "Beaver", "Ghost", "Golem" };
+            int randomIndex = Random.Range(0, enemyTypes.Length);
+            return enemyTypes[randomIndex];
         }
     }
 }
