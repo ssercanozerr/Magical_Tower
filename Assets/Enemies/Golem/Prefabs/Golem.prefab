@@ -2416,3 +2416,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfos: {fileID: 11400000, guid: cacd7c7c353ec1444b84b800c4b15162, type: 2}
+  healthImage: {fileID: 6456884528937355438}

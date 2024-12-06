@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfos: {fileID: 11400000, guid: 6ad063acb866a844ea8d869e8e21f5cc, type: 2}
+  healthImage: {fileID: 7823092721384954112}
 --- !u!1 &2748282422418694191
 GameObject:
   m_ObjectHideFlags: 0

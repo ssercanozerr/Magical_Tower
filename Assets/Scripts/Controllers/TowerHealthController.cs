@@ -24,7 +24,7 @@ namespace Assets.Scripts.Controllers
 
             if (_health <= 0)
             {
-                Debug.Log("GAME OVER...");
+                //game over operations...
             }
         }
 

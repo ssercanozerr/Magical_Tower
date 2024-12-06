@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
 using Assets.Scripts.ScriptableObjects;
 using Assets.Scripts.Signals;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Controllers
 {
     public class EnemyController : MonoBehaviour
     {
         [SerializeField] private EnemyInfos enemyInfos;
-        
-        private float _attackDistance;
+        [SerializeField] private Image healthImage;
+
+        private float _health;
         private float _speed;
+        private float _attackDistance;
         private Transform _tower;
         private Animator _animator;
+
+        private void Awake()
+        {
+            _health = enemyInfos.health;
+            healthImage.fillAmount = _health / enemyInfos.health;
+        }
 
         private void Start()
         {
@@ -35,6 +44,21 @@ namespace Assets.Scripts.Controllers
             else
             {
                 MoveTowardsTower();
+            }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            _health -= damage;
+            _health = Mathf.Clamp(_health, 0, enemyInfos.health);
+            healthImage.fillAmount = _health / enemyInfos.health;
+
+            if (_health <= 0)
+            {
+                _health = enemyInfos.health;
+                healthImage.fillAmount = _health / enemyInfos.health;
+                PoolSignals.Instance.onObjReturnToPool?.Invoke(gameObject.tag, gameObject);
+                GameSignals.Instance.onReturnEnemies?.Invoke().Remove(gameObject);
             }
         }
 
