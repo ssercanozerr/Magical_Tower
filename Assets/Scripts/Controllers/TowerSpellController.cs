@@ -2,13 +2,16 @@ using Assets.Scripts.Controllers;
 using Assets.Scripts.Signals;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerSpellController : MonoBehaviour
 {
+    [SerializeField] private Image fireballCoolDownImg;
     [SerializeField] private float fireballCooldown;
     [SerializeField] private float fireballSpeed;
     [SerializeField] private float fireballDamage;
 
+    [SerializeField] private Image barrageCoolDownImg;
     [SerializeField] private float barrageCooldown;
     [SerializeField] private float barrageSpeed;
     [SerializeField] private float barrageDamage;
@@ -17,11 +20,22 @@ public class TowerSpellController : MonoBehaviour
     private float _barrageTimer = 0f;
     private List<GameObject> _enemies;
 
+    private void Awake()
+    {
+        SetCooldown();
+    }
+
     private void Update()
     {
         _enemies = GameSignals.Instance.onReturnEnemies?.Invoke();
+
         _fireballTimer -= Time.deltaTime;
         _barrageTimer -= Time.deltaTime;
+
+        _fireballTimer = Mathf.Clamp(_fireballTimer, 0f, fireballCooldown);
+        _barrageTimer = Mathf.Clamp(_barrageTimer, 0f, barrageCooldown);
+
+        SetCooldown();
     }
 
     public void FireballSpell()
@@ -59,11 +73,17 @@ public class TowerSpellController : MonoBehaviour
         {
             if (enemy != null)
             {
-                GameObject bullet = PoolSignals.Instance.onGetObjFromPool?.Invoke("Icicle");
-                bullet.transform.position = transform.position + new Vector3(0, 10, 0);
-                bullet.transform.LookAt(enemy.transform);
-                bullet.GetComponent<SpellsController>().Initialize(enemy.transform.position, barrageSpeed, barrageDamage);
+                GameObject icicle = PoolSignals.Instance.onGetObjFromPool?.Invoke("Icicle");
+                icicle.transform.position = transform.position + new Vector3(0, 10, 0);
+                icicle.transform.LookAt(enemy.transform);
+                icicle.GetComponent<SpellsController>().Initialize(enemy.transform.position, barrageSpeed, barrageDamage);
             }
         }
+    }
+
+    private void SetCooldown()
+    {
+        fireballCoolDownImg.fillAmount = _fireballTimer / fireballCooldown;
+        barrageCoolDownImg.fillAmount = _barrageTimer / barrageCooldown;
     }
 }

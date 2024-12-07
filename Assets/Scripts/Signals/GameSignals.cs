@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Signals
 {
@@ -10,6 +10,7 @@ namespace Assets.Scripts.Signals
         public static GameSignals Instance;
 
         public Func<List<GameObject>> onReturnEnemies;
+        public UnityAction onGameOver;
 
         private void Awake()
         {

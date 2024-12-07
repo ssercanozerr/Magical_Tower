@@ -14,6 +14,8 @@ namespace Assets.Scripts.Controllers
         [SerializeField] private float spawnInterval;
         [SerializeField] private int initialEnemyCount;
 
+        [SerializeField] private GameObject endPanel;
+
         private int _currentWave = 0;
         private int _currentEnemyCount;
         private List<GameObject> _enemies = new();
@@ -22,6 +24,13 @@ namespace Assets.Scripts.Controllers
         {
             StartNextWave();
         }
+
+        public void OnGameOver()
+        {
+            Time.timeScale = 0f;
+            endPanel.SetActive(true);
+        }
+
         public List<GameObject> OnReturnEnemies()
         {
             return _enemies;

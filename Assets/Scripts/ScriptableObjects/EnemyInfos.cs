@@ -8,5 +8,6 @@ namespace Assets.Scripts.ScriptableObjects
         public float health;
         public float damage;
         public float attackDistance;
+        public int score;
     }
 }

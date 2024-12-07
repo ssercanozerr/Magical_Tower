@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Signals;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Controllers
@@ -24,9 +25,8 @@ namespace Assets.Scripts.Controllers
 
             if (_health <= 0)
             {
-                //game over operations...
+                GameSignals.Instance.onGameOver?.Invoke();
             }
         }
-
     }
 }

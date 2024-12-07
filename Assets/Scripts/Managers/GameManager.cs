@@ -11,11 +11,13 @@ namespace Assets.Scripts.Managers
         private void OnEnable()
         {
             GameSignals.Instance.onReturnEnemies += gameController.OnReturnEnemies;
+            GameSignals.Instance.onGameOver += gameController.OnGameOver;
         }
 
         private void OnDisable()
         {
             GameSignals.Instance.onReturnEnemies -= gameController.OnReturnEnemies;
+            GameSignals.Instance.onGameOver -= gameController.OnGameOver;
         }
     }
 }

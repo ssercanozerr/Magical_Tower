@@ -59,6 +59,7 @@ namespace Assets.Scripts.Controllers
                 healthImage.fillAmount = _health / enemyInfos.health;
                 PoolSignals.Instance.onObjReturnToPool?.Invoke(gameObject.tag, gameObject);
                 GameSignals.Instance.onReturnEnemies?.Invoke().Remove(gameObject);
+                ScoreSignals.Instance.onUpdateScore?.Invoke(enemyInfos.score);
             }
         }
 
